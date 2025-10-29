@@ -10,7 +10,7 @@ echo "Domain,Ports Open" > "$result_csv"
 while IFS= read -r domain
 do
   echo "Scanning $domain..."
-  ports=$(nmap -p 1-100 --open -sS "$domain" | grep "^([0-9]*)/" | awk '{print $1}' | tr '\n' ';' | sed 's/;$//')
+  ports=$(nmap --script ssl-enum-ciphers,ssl-cert -p 443 "$domain" | grep 'open' | awk '{print $1}' | tr '\n' ',' | sed 's/,$//')
 
   if [ -z "$ports" ]; then
     ports="None"
