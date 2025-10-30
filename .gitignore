@@ -9,3 +9,6 @@
 /scan-public-ips/port_22_scan_result.csv
 /tests/testssl.sh/
 /tests/result.json
+/scan-port-domains/domains.txt
+/scan-port-domains/records.json
+/scan-port-domains/scan_results.csv
