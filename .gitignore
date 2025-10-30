@@ -7,3 +7,5 @@
 /domains-port/a_records.json
 /public-ips/record_public_ip.json
 /public-ips/port_22_scan_result.csv
+/tests/testssl.sh/
+/tests/result.json
