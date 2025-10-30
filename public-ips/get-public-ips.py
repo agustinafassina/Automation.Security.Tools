@@ -37,5 +37,5 @@ for region in REGIONS:
     except Exception as e:
         print(f"Error in the region {region}: {e}")
 
-with open('aws_public_ips.json', 'w') as f:
+with open('record_public_ip.json', 'w') as f:
     json.dump(all_ips, f, indent=4)

@@ -9,7 +9,7 @@ def check_port_22(ip):
     sock.close()
     return result == 0
 
-with open('aws_public_ips.json', 'r') as f:
+with open('record_public_ip.json', 'r') as f:
     data = json.load(f)
 
 ips_info = [{'IP': entry['Public_IP'], 'Name': entry.get('Name', 'Sin nombre')} for entry in data]
@@ -31,11 +31,11 @@ for item in ips_info:
         'Port 22': open_status
     })
 
-with open('port_22_info.csv', 'w', newline='') as csvfile:
+with open('port_22_scan_result.csv', 'w', newline='') as csvfile:
     fieldnames = ['IP', 'Name', 'Port 22']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     for row in scan_results:
         writer.writerow(row)
 
-print("Verifycation completed. Results saved in 'port_22_info.csv'.")
+print("Verifycation completed. Results saved in 'port_22_scan_result.csv'.")
