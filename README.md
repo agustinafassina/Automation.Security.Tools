@@ -1,8 +1,8 @@
-# Automation.Security.Tools
-The idea behind this repository is to automate some security tests, such as scanning domains or checking ports.
-- Domains (in progress)
-- Open ports
+# Security Tools for Automation
+The goal of this repository is to automate some security tests, such as domain scanning and port checking.
+- Domains (under development)
+- Open Ports (scan ips)
 
-#### Test
-Escanear domains: la idea es listar todos los domains desde aws and route53 y correr un comando que lo escanee y muestre por consola el resultado y tambien lo imprima en un csv.
-Cual tool usar?
+#### Scripts and details
+- Domain Scan Test: the idea is to list all AWS and Route 53 domains and run a command that scans them, displays the results in the console, and saves them to a CSV file.
+- Open ports scan: the idea is to list the IPs and scan them to see if they have the SSH port open.
