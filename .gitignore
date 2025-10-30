@@ -1,0 +1,9 @@
+/domains/testssl.sh/
+/domains/result.csv
+/domains/resultado.csv
+/domains/domains.txt
+/domains/scan_results.csv
+/domains/a_records.json
+/domains-port/a_records.json
+/public-ips/record_public_ip.json
+/public-ips/port_22_scan_result.csv
