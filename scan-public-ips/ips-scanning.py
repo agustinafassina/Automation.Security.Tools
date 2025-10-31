@@ -1,6 +1,7 @@
 import json
 import socket
 import concurrent.futures
+from datetime import datetime
 
 PORTS_TO_SCAN = [22, 80, 443, 21, 25, 53, 110, 143, 993, 995, 3389, 3306, 5432, 5900, 8080, 8443]
 
@@ -33,12 +34,14 @@ for entry in data:
 
     print(f"Scanning {ip_public} ({name})...")
     open_ports = scan_ip(ip_public)
+    scan_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Fecha y hora
     results.append({
         'Public_IP': ip_public,
         'Private_IP': private_ip,
         'Region': region,
         'Name': name,
-        'Open_Ports': open_ports
+        'Open_Ports': open_ports,
+        'Scan_Time': scan_time
     })
 
 with open('scan_publicips_result.json', 'w') as f:
