@@ -26,18 +26,22 @@ with open('record_public_ip.json', 'r') as f:
 
 results = []
 for entry in data:
-    ip = entry['Public_IP']
+    ip_public = entry['Public_IP']
     name = entry.get('Name', '')
-    print(f"Scanning {ip} ({name})...")
-    open_ports = scan_ip(ip)
+    private_ip = entry.get('Private_IP', 'N/A')
+    region = entry.get('Region', 'N/A')
+
+    print(f"Scanning {ip_public} ({name})...")
+    open_ports = scan_ip(ip_public)
     results.append({
-        'Public_IP': ip,
+        'Public_IP': ip_public,
+        'Private_IP': private_ip,
+        'Region': region,
         'Name': name,
         'Open_Ports': open_ports
     })
 
-# Guardar resultados en un archivo JSON
 with open('scan_publicips_result.json', 'w') as f:
     json.dump(results, f, indent=4)
 
-print("Complete scan. Results saved to scan_publicips_result.json")
+print("Complete scan. Results saved to 'scan_publicips_result.json'")
