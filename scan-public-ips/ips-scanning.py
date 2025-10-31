@@ -1,41 +1,43 @@
 import json
-import csv
 import socket
+import concurrent.futures
 
-def check_port_22(ip):
+PORTS_TO_SCAN = [22, 80, 443, 21, 25, 53, 110, 143, 993, 995, 3389, 3306, 5432, 5900, 8080, 8443]
+
+def check_port(ip, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(2)  # timeout 2 seconds
-    result = sock.connect_ex((ip, 22))
+    sock.settimeout(0.5)
+    result = sock.connect_ex((ip, port))
     sock.close()
-    return result == 0
+    return port, result == 0
+
+def scan_ip(ip):
+    open_ports = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+        futures = [executor.submit(check_port, ip, port) for port in PORTS_TO_SCAN]
+        for future in concurrent.futures.as_completed(futures):
+            port, is_open = future.result()
+            if is_open:
+                open_ports.append(port)
+    return open_ports
 
 with open('record_public_ip.json', 'r') as f:
     data = json.load(f)
 
-ips_info = [{'IP': entry['Public_IP'], 'Name': entry.get('Name', 'Sin nombre')} for entry in data]
-
-scan_results = []
-
-for item in ips_info:
-    ip = item['IP']
-    name = item['Name']
-    print(f"Verifying {ip} ({name})...")
-    if check_port_22(ip):
-        open_status = 'Open'
-    else:
-        open_status = 'Closed or not responeding'
-
-    scan_results.append({
-        'IP': ip,
+results = []
+for entry in data:
+    ip = entry['Public_IP']
+    name = entry.get('Name', '')
+    print(f"Scanning {ip} ({name})...")
+    open_ports = scan_ip(ip)
+    results.append({
+        'Public_IP': ip,
         'Name': name,
-        'Port 22': open_status
+        'Open_Ports': open_ports
     })
 
-with open('port_22_scan_result.csv', 'w', newline='') as csvfile:
-    fieldnames = ['IP', 'Name', 'Port 22']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
-    for row in scan_results:
-        writer.writerow(row)
+# Guardar resultados en un archivo JSON
+with open('scan_publicips_result.json', 'w') as f:
+    json.dump(results, f, indent=4)
 
-print("Verifycation completed. Results saved in 'port_22_scan_result.csv'.")
+print("Complete scan. Results saved to scan_publicips_result.json")
