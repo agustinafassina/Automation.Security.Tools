@@ -4,12 +4,8 @@ The goal of this repository is to automate some security tests, such as domain s
 #### The repository has some implementations
 - [x] Scan open multiple ports in the domains (scan-port-domains)
 - [x] Scan open multiple ports in the public IPs (scan-public-ips)
-- [x] Scan TLS/SSL (scan-tls-domains)
+- [ ] Scan TLS/SSL (scan-tls-domains)
 - [x] Scan headers in the domains
-
-#### Scripts and details 📝
-- Domain Scan Test: the idea is to list all AWS and Route 53 domains and run a command that scans them, displays the results in the console, and saves them to a CSV file.
-- Open ports scan: the idea is to list the IPs and scan them to see if they have the SSH port open.
 
 ### What do you need for the scripts to work?
 You need to have aws-cli installed because the framework we use from Python needs access to our AWS account.
@@ -34,22 +30,7 @@ You need to have aws-cli installed because the framework we use from Python need
 * 8080 (HTTP alternativo)
 * 8443 (HTTPS alternativo)
 
-## JSON structures that export reports via script.
-1. export-iam-users
-- iam_users_permissions_results.csv
-```
-UserName,Groups,UserPolicies,GroupPermissions,TagProject,TagProjectStatus,TagProjectService,TagProjectDescription
-```
-- iam_users_permissions_result.json
-```
-{
-    "UserName": "user@test.com",
-    "Groups": "Dev",
-    "UserPolicies": "AmazonAPIGatewayAdministrator, AWSLambda_FullAccess",
-    "GroupPermissions": "AmazonAPIGatewayAdministrator",
-    "TagProject": "",
-    "TagProjectStatus": "",
-    "TagProjectService": "",
-    "TagProjectDescription": ""
-}
-```
+#### Scripts, details and JSON structures 📝
+- Domain Scan Test: the idea is to list all AWS and Route 53 domains and run a command that scans them, displays the results in the console, and saves them to a CSV file.
+- Open ports scan: the idea is to list the IPs and scan them to see if they have the SSH port open.
+- export-iam-users: ./export-iam-users/README.md
