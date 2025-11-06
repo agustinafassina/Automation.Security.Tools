@@ -5,7 +5,7 @@ The goal of this repository is to automate some security tests, such as domain s
 - [x] Scan open multiple ports in the domains (scan-port-domains)
 - [x] Scan open multiple ports in the public IPs (scan-public-ips)
 - [ ] Scan TLS/SSL (scan-tls-domains)
-- [x] Scan headers in the domains
+- [x] Scan headers in the domains (apis or apps)
 
 ### What do you need for the scripts to work?
 You need to have aws-cli installed because the framework we use from Python needs access to our AWS account.
