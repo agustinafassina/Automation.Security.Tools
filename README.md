@@ -33,3 +33,23 @@ You need to have aws-cli installed because the framework we use from Python need
 * 5900 (VNC)
 * 8080 (HTTP alternativo)
 * 8443 (HTTPS alternativo)
+
+## JSON structures that export reports via script.
+1. export-iam-users
+- iam_users_permissions_results.csv
+```
+UserName,Groups,UserPolicies,GroupPermissions,TagProject,TagProjectStatus,TagProjectService,TagProjectDescription
+```
+- iam_users_permissions_result.json
+```
+{
+    "UserName": "user@test.com",
+    "Groups": "Dev",
+    "UserPolicies": "AmazonAPIGatewayAdministrator, AWSLambda_FullAccess",
+    "GroupPermissions": "AmazonAPIGatewayAdministrator",
+    "TagProject": "",
+    "TagProjectStatus": "",
+    "TagProjectService": "",
+    "TagProjectDescription": ""
+}
+```
