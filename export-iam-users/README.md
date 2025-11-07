@@ -1,6 +1,11 @@
 # Export users of Iam and AWS
 This script enumerates all IAM users in AWS, lists them, and exports them to a CSV file and a JSON file.
 
+#### Files that it exports
+1. Csv result: iam_users_result.csv
+2. Json result: iam_users_result.json
+
+#### Structure of the exported files
 1. Csv result: iam_users_result.csv
 ```
 UserName,Groups,UserPolicies,GroupPermissions,TagProject,TagProjectStatus,TagProjectService,TagProjectDescription
