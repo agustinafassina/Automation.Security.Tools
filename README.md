@@ -9,15 +9,15 @@ This repository contains scripts and tools for automating data extraction and an
 5. [ ] Scan open multiple ports in the public IPs (scan-public-ips)
 6. [ ] Scan TLS/SSL (scan-tls-domains)
 
-### Types of data fetched from AWS
+#### Types of data fetched from AWS
 - IAM: Policies, users, roles, and permissions.
 - EC2 and Public IP: Instance inventory, open ports and more.
 - Route53: inventory of domains to scan later.
 
-### Tools used
+#### Tools used
 - Socket python
 
-### What do you need for the scripts to work?
+#### What do you need for the scripts to work?
 You need to have aws-cli installed because the framework we use from Python needs access to our AWS account.
 - Aws account with permissions 🔐
 
