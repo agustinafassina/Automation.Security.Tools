@@ -16,3 +16,7 @@
 ## new folders version
 /export-iam-users/iam_users_result.csv
 /export-iam-users/iam_users_result.json
+
+/scan-1000-ports-public-ips/scan_publicips_result.csv
+/scan-1000-ports-public-ips/scan_publicips_result.json
+/scan-1000-ports-public-ips/record_public_ip.json

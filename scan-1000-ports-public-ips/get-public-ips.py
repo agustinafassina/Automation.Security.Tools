@@ -31,8 +31,8 @@ for region in REGIONS:
                     all_ips.append({
                         'Region': region,
                         'Name': name,
-                        'Public_IP': public_ip,
-                        'Private_IP': private_ip
+                        'PublicIP': public_ip,
+                        'PrivateIP': private_ip
                     })
     except Exception as e:
         print(f"Error in the region {region}: {e}")
