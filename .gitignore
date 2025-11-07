@@ -12,3 +12,7 @@
 /scan-tls-domains/testssl.sh/
 /scan-tls-domains/tls_results/
 /scan-tls-domains/records.json
+
+## new folders version
+/export-iam-users/iam_users_result.csv
+/export-iam-users/iam_users_result.json
