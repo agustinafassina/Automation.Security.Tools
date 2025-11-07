@@ -1,57 +1,68 @@
 #!/usr/bin/bash
 sudo apt-get install -y jq
 
-domains=(
-  ""
-  ""
-  ""
-)
+json_file="records.json"
 
-declare -a results=()
+declare -a results_json=()
+declare -a results_csv=()
 
 check_headers() {
   local domain="$1"
-  echo "Verifying: $domain"
+  local ip="$2"
+  echo "Checking: $domain (IP: $ip)"
   headers=$(curl -sI "$domain")
   echo "$headers"
   echo ""
 
-  xcto="no"
-  xfo="no"
-  csp="no"
-  hsts="no"
+  xcto="no⛔"
+  xfo="no⛔"
+  csp="no⛔"
+  hsts="no⛔"
 
   if echo "$headers" | grep -i "x-content-type-options: nosniff" > /dev/null; then
-    xcto="yes"
+    xcto="yes✅"
   fi
 
   if echo "$headers" | grep -i "x-frame-options: deny" > /dev/null; then
-    xfo="yes"
+    xfo="yes✅"
   fi
 
   if echo "$headers" | grep -i "content-security-policy" > /dev/null; then
-    csp="yes"
+    csp="yes✅"
   fi
 
   if echo "$headers" | grep -i "strict-transport-security" > /dev/null; then
-    hsts="yes"
+    hsts="yes✅"
   fi
 
-  results+=("{\"domain\":\"$domain\",\"xContentTypeOptions\":\"$xcto\",\"xFrameOptions\":\"$xfo\",\"contentSecurityPolicy\":\"$csp\",\"hsts\":\"$hsts\"}")
+  results_json+=("{\"domain\":\"$domain\",\"ip\":\"$ip\",\"xContentTypeOptions\":\"$xcto\",\"xFrameOptions\":\"$xfo\",\"contentSecurityPolicy\":\"$csp\",\"hsts\":\"$hsts\"}")
 
-  echo "x-content-type-options: $xcto ✅"
-  echo "x-frame-options: $xfo ✅"
-  echo "content-security-policy: $csp ✅"
-  echo "HSTS: $hsts ✅"
+  results_csv+=("\"$domain\",\"$ip\",\"$xcto\",\"$xfo\",\"$csp\",\"$hsts\"")
+
+  echo "x-content-type-options: $xcto "
+  echo "x-frame-options: $xfo"
+  echo "content-security-policy: $csp"
+  echo "HSTS: $hsts"
   echo "------------------------"
 }
 
-# Ejecutar por cada dominio
-for domain in "${domains[@]}"; do
-  check_headers "$domain"
+domains=$(jq -r '.[] | .Records[] | .Name' "$json_file" | sort -u)
+
+for domain in $domains; do
+  ip=$(dig +short "$domain" | head -n 1)
+  if [[ -n "$ip" ]]; then
+    check_headers "$domain" "$ip"
+  else
+    echo "It could not be resolved: $domain"
+  fi
 done
 
-
-json_output=$(printf "%s\n" "${results[@]}" | jq -s '.')
+json_output=$(printf "%s\n" "${results_json[@]}" | jq -s '.')
 
 echo "$json_output" > verified_headers_results.json
+
+csv_header="Domain,IP,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS"
+echo "$csv_header" > verified_headers_results.csv
+for row in "${results_csv[@]}"; do
+  echo "$row" >> verified_headers_results.csv
+done

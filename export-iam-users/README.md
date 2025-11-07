@@ -1,13 +1,13 @@
 # Export users of Iam and AWS
 This script enumerates all IAM users in AWS, lists them, and exports them to a CSV file and a JSON file.
 
-### Framework, library, package and other
+#### Framework, library, package and other
 Python with Boto3.
 
-### Requirements to run the script
+#### Requirements to run the script
 Aws cli and boto3 installed.
 
-### Run script
+#### Run script
 ```
 py export-users-of-iam.py
 ```

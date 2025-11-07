@@ -20,3 +20,7 @@
 /scan-1000-ports-public-ips/scan_publicips_result.csv
 /scan-1000-ports-public-ips/scan_publicips_result.json
 /scan-1000-ports-public-ips/record_public_ip.json
+
+/scan-headers-domains/verified_headers_results.csv
+/scan-headers-domains/verified_headers_results.json
+/scan-headers-domains/records.json

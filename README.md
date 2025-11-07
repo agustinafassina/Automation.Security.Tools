@@ -4,7 +4,7 @@ This repository contains scripts and tools for automating data extraction and an
 #### The repository has some implementations
 1. [x] Export users list of Iam in AWS (export-iam-users)
 2. [x] Scan open 1000 ports in the public IPs (scan-1000-ports-public-ips)
-3. [ ] Scan headers in the domains (apis or apps)
+3. [x] Scan headers in the domains (apis or apps)
 4. [ ] Scan open multiple ports in the domains (scan-port-domains)
 5. [ ] Scan open multiple ports in the public IPs (scan-public-ips)
 6. [ ] Scan TLS/SSL (scan-tls-domains)
@@ -35,3 +35,10 @@ You need to have aws-cli installed because the framework we use from Python need
     - Export files:
     - 1. Csv result: scan_publicips_result.csv
     - 2. Json result: scan_publicips_result.json
+
+3. Scan headers in the domains
+    - Script folder: ./scan-headers-domains
+    - Readme detail: ./scan-headers-domains/README.md
+    - Export files:
+    - 1. Csv result: verified_headers_results.csv
+    - 2. Json result: verified_headers_results.json
