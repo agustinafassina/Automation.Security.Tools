@@ -27,7 +27,6 @@ def get_group_permissions(group_name):
     permissions.extend(inline_response['PolicyNames'])
     return permissions
 
-
 def get_iam_users():
     users = []
     paginator = iam.get_paginator('list_users')
@@ -38,14 +37,11 @@ def get_iam_users():
             groups_response = iam.list_groups_for_user(UserName=user_name)
             groups = [group['GroupName'] for group in groups_response['Groups']]
 
-
             user_policies = get_user_policies(user_name)
-
 
             group_permissions = []
             for group in groups:
                 group_permissions.extend(get_group_permissions(group))
-
 
             tags = get_user_tags(user_name)
             project_name = tags.get('Project', '')
@@ -66,18 +62,15 @@ def get_iam_users():
 
     return users
 
-
 users_data = get_iam_users()
-
 
 df = pd.DataFrame(users_data)
 
-csv_filename = 'iam_users_permissions_result.csv'
+csv_filename = 'iam_users_result.csv'
 df.to_csv(csv_filename, index=False)
 
-
-json_filename = 'iam_users_permissions_result.json'
+json_filename = 'iam_users_result.json'
 with open(json_filename, 'w') as json_file:
     json.dump(users_data, json_file, indent=4)
 
-print(f"Archivos exportados correctamente:\n- {csv_filename}\n- {json_filename}")
+print(f"Files exported successfully:\n- {csv_filename}\n- {json_filename}")
