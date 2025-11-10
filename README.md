@@ -36,7 +36,7 @@ You need to have aws-cli installed because the framework we use from Python need
     - 1. Csv result: scan_publicips_result.csv
     - 2. Json result: scan_publicips_result.json
 
-3. Scan headers in the domains
+3. Scan headers in the domains ✅
     - Script folder: ./scan-headers-domains
     - Readme detail: ./scan-headers-domains/README.md
     - Export files:
