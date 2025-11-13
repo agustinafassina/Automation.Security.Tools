@@ -23,19 +23,22 @@ bash scan-header-multiple-domain.sh
 #### Structure of the exported files
 1. Csv result: verified_headers_results.csv
 ```
-Domain,IP,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS
+Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS
 ```
 
 2. Json result: verified_headers_results.json
 ```
 [
     {
-        "domain": "",
-        "ip": "",
+        "Domain": "",
+        "Ip": "",
         "xContentTypeOptions": "no⛔",
         "xFrameOptions": "no⛔",
         "contentSecurityPolicy": "no⛔",
-        "hsts": "no⛔"
+        "Hsts": "no⛔"
     }
 ]
 ```
+
+
+este quedaron mal las variables

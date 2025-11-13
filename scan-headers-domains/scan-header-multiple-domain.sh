@@ -35,7 +35,7 @@ check_headers() {
     hsts="yes✅"
   fi
 
-  results_json+=("{\"domain\":\"$domain\",\"ip\":\"$ip\",\"xContentTypeOptions\":\"$xcto\",\"xFrameOptions\":\"$xfo\",\"contentSecurityPolicy\":\"$csp\",\"hsts\":\"$hsts\"}")
+  results_json+=("{\"Domain\":\"$domain\",\"Ip\":\"$ip\",\"xContentTypeOptions\":\"$xcto\",\"xFrameOptions\":\"$xfo\",\"ContentSecurityPolicy\":\"$csp\",\"Hsts\":\"$hsts\"}")
 
   results_csv+=("\"$domain\",\"$ip\",\"$xcto\",\"$xfo\",\"$csp\",\"$hsts\"")
 
