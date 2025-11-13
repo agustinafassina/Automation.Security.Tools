@@ -39,6 +39,3 @@ Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS
     }
 ]
 ```
-
-
-este quedaron mal las variables
