@@ -24,3 +24,7 @@
 /scan-headers-domains/verified_headers_results.csv
 /scan-headers-domains/verified_headers_results.json
 /scan-headers-domains/records.json
+
+/scan-populars-ports-public-ips/scan_publicips_result.csv
+/scan-populars-ports-public-ips/scan_publicips_result.json
+/scan-populars-ports-public-ips/record_public_ip.json
