@@ -1,7 +1,7 @@
 import boto3
 import json
 
-REGIONS = [
+regions = [
     'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2',
     'ap-south-1', 'ap-northeast-1',
     'ap-northeast-2', 'ap-northeast-3', 'ap-southeast-1',
@@ -12,7 +12,7 @@ REGIONS = [
 
 all_ips = []
 
-for region in REGIONS:
+for region in regions:
     try:
         ec2 = boto3.client('ec2', region_name=region)
         response = ec2.describe_instances()
@@ -31,8 +31,8 @@ for region in REGIONS:
                     all_ips.append({
                         'Region': region,
                         'Name': name,
-                        'Public_IP': public_ip,
-                        'Private_IP': private_ip
+                        'PublicIp': public_ip,
+                        'PrivateIp': private_ip
                     })
     except Exception as e:
         print(f"Error in the region {region}: {e}")

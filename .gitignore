@@ -28,3 +28,10 @@
 /scan-populars-ports-public-ips/scan_publicips_result.csv
 /scan-populars-ports-public-ips/scan_publicips_result.json
 /scan-populars-ports-public-ips/record_public_ip.json
+
+/scan-populars-ports-domains/scan_port_domains_results.csv
+/scan-populars-ports-domains/scan_port_domains_results.json
+/scan-populars-ports-domains/records.json
+/scan-populars-ports-domains/domains.txt
+
+/scan-tls-ssl-domains/records.json

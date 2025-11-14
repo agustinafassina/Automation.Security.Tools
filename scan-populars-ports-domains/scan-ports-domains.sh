@@ -4,13 +4,16 @@ sudo apt-get install -y nmap
 
 json_file="records.json"
 domains_file="domains.txt"
-result_csv="scan_results.csv"
+result_csv="scan_port_domains_results.csv"
+result_json="scan_port_domains_results.json"
 
 ports_to_scan="21,22,23,25,53,80,110,143,443,993,995,3389,3306,5432,5900,8080,8443"
 
 jq -r '.[] | .Records[]?.Name' "$json_file" > "$domains_file"
 
-echo "Domain,Ports Open,Scan Time" > "$result_csv"
+echo "Domain,OpenPorts,ScanTime" > "$result_csv"
+
+declare -a json_results=()
 
 while IFS= read -r domain
 do
@@ -21,11 +24,15 @@ do
     ports="None"
   fi
 
-  # Obtener la fecha y hora actual en formato legible
   scan_time=$(date '+%Y-%m-%d %H:%M:%S')
 
-  # Escribir en el CSV incluyendo la hora
   echo "$domain,\"$ports\",$scan_time" >> "$result_csv"
+
+  json_results+=("{\"Domain\":\"$domain\",\"OpenPorts\":\"$ports\",\"ScanTime\":\"$scan_time\"}")
 done < "$domains_file"
 
-echo "Completed scan. results in $result_csv"
+json_output=$(printf "%s\n" "${json_results[@]}" | jq -s '.')
+
+echo "$json_output" > "$result_json"
+
+echo "Completed scan. Results in $result_csv and $result_json"

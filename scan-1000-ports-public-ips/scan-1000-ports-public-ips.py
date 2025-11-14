@@ -65,17 +65,17 @@ with open('record_public_ip.json', 'r') as f:
 results = []
 
 for entry in data:
-    ip_public = entry['PublicIP']
+    ip_public = entry['PublicIp']
     name = entry.get('Name', '')
-    private_ip = entry.get('PrivateIP', 'N/A')
+    private_ip = entry.get('PrivateIp', 'N/A')
     region = entry.get('Region', 'N/A')
 
     print(f"Scanning {ip_public} ({name})...")
     open_ports = scan_ip(ip_public)
     scan_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     results.append({
-        'PublicIP': ip_public,
-        'PrivateIP': private_ip,
+        'PublicIp': ip_public,
+        'PrivateIp': private_ip,
         'Region': region,
         'Name': name,
         'OpenPorts': open_ports,
@@ -87,7 +87,7 @@ with open('scan_publicips_result.json', 'w') as f:
 
 csv_file = 'scan_publicips_result.csv'
 with open(csv_file, 'w', newline='') as csvf:
-    writer = csv.DictWriter(csvf, fieldnames=['PublicIP', 'PrivateIP', 'Region', 'Name', 'OpenPorts', 'ScanTime'])
+    writer = csv.DictWriter(csvf, fieldnames=['PublicIp', 'PrivateIp', 'Region', 'Name', 'OpenPorts', 'ScanTime'])
     writer.writeheader()
     for row in results:
         writer.writerow(row)

@@ -42,7 +42,7 @@ check_headers() {
   echo "x-content-type-options: $xcto "
   echo "x-frame-options: $xfo"
   echo "content-security-policy: $csp"
-  echo "HSTS: $hsts"
+  echo "Hsts: $hsts"
   echo "------------------------"
 }
 
@@ -61,7 +61,7 @@ json_output=$(printf "%s\n" "${results_json[@]}" | jq -s '.')
 
 echo "$json_output" > verified_headers_results.json
 
-csv_header="Domain,IP,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS"
+csv_header="Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,Hsts"
 echo "$csv_header" > verified_headers_results.csv
 for row in "${results_csv[@]}"; do
   echo "$row" >> verified_headers_results.csv

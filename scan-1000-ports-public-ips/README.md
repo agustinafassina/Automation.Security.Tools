@@ -44,7 +44,7 @@ Aws cli and boto3 installed.
 #### Run script
 ```
 # get public ips
-py get-public-ips
+py get-public-ips.py
 
 # scan ips
 py scan-1000-ports-public-ips.py
@@ -57,15 +57,15 @@ py scan-1000-ports-public-ips.py
 #### Structure of the exported files
 1. Csv result: scan_publicips_result.csv
 ```
-PublicIP,PrivateIP,Region,Name,OpenPorts,ScanTime
+PublicIp,PrivateIp,Region,Name,OpenPorts,ScanTime
 ```
 
 2. Json result: scan_publicips_result.json
 ```
 [
     {
-        "PublicIP": "",
-        "PrivateIP": "",
+        "PublicIp": "",
+        "PrivateIp": "",
         "Region": "us-east-1",
         "Name": "",
         "OpenPorts": [

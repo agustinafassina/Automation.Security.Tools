@@ -42,23 +42,21 @@ py scan-public-ips.py
 #### Structure of the exported files
 1. Csv result: scan_publicips_result.csv
 ```
-Public_IP,Private_IP,Region,Name,Open_Ports,Scan_Time
+PublicIp,PrivateIp,Region,Name,OpenPorts,ScanTime
 ```
 
 2. Json result: scan_publicips_result.json
 ```
 [
-    {
-        "Public_IP": "xx.xxx.xxx.xxx",
-        "Private_IP": "xxx.xx.xx.xx",
+        "PublicIp": "xx.222.xxx.112",
+        "PrivateIp": "xxx.31.xx.11",
         "Region": "us-east-1",
-        "Name": "xx-xx-xx",
-        "Open_Ports": [
+        "Name": "server-name",
+        "OpenPorts": [
+            443,
             53,
-            80,
-            443
+            80
         ],
-        "Scan_Time": "2025-11-13 17:55:19"
-    }
+        "ScanTime": "2025-11-14 00:00:00"
 ]
 ```

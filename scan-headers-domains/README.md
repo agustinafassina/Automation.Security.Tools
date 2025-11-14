@@ -23,7 +23,7 @@ bash scan-header-multiple-domain.sh
 #### Structure of the exported files
 1. Csv result: verified_headers_results.csv
 ```
-Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,HSTS
+Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,Hsts
 ```
 
 2. Json result: verified_headers_results.json

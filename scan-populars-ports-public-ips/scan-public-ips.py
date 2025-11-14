@@ -4,7 +4,7 @@ import concurrent.futures
 from datetime import datetime
 import csv
 
-PORTS_TO_SCAN = [ 21, 22, 25, 53, 80, 110, 143, 443, 993, 995, 3389, 3306, 5432, 5900, 8080, 8443 ]
+ports_to_scan = [ 21, 22, 25, 53, 80, 110, 143, 443, 993, 995, 3389, 3306, 5432, 5900, 8080, 8443 ]
 
 def check_port(ip, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,7 +16,7 @@ def check_port(ip, port):
 def scan_ip(ip):
     open_ports = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
-        futures = [executor.submit(check_port, ip, port) for port in PORTS_TO_SCAN]
+        futures = [executor.submit(check_port, ip, port) for port in ports_to_scan]
         for future in concurrent.futures.as_completed(futures):
             port, is_open = future.result()
             if is_open:
@@ -29,21 +29,21 @@ with open('record_public_ip.json', 'r') as f:
 results = []
 
 for entry in data:
-    ip_public = entry['Public_IP']
+    public_ip = entry['PublicIp']
     name = entry.get('Name', '')
-    private_ip = entry.get('Private_IP', 'N/A')
+    private_ip = entry.get('PrivateIp', 'N/A')
     region = entry.get('Region', 'N/A')
 
-    print(f"Scanning {ip_public} ({name})...")
-    open_ports = scan_ip(ip_public)
+    print(f"Scanning {public_ip} ({name})...")
+    open_ports = scan_ip(public_ip)
     scan_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     results.append({
-        'Public_IP': ip_public,
-        'Private_IP': private_ip,
+        'PublicIp': public_ip,
+        'PrivateIp': private_ip,
         'Region': region,
         'Name': name,
-        'Open_Ports': open_ports,
-        'Scan_Time': scan_time
+        'OpenPorts': open_ports,
+        'ScanTime': scan_time
     })
 
 with open('scan_publicips_result.json', 'w') as f:
@@ -51,7 +51,7 @@ with open('scan_publicips_result.json', 'w') as f:
 
 csv_file = 'scan_publicips_result.csv'
 with open(csv_file, 'w', newline='') as csvf:
-    writer = csv.DictWriter(csvf, fieldnames=['Public_IP', 'Private_IP', 'Region', 'Name', 'Open_Ports', 'Scan_Time'])
+    writer = csv.DictWriter(csvf, fieldnames=['PublicIp', 'PrivateIp', 'Region', 'Name', 'OpenPorts', 'ScanTime'])
     writer.writeheader()
     for row in results:
         writer.writerow(row)

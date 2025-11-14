@@ -9,7 +9,7 @@ Aws cli and boto3 installed.
 
 #### Run script
 ```
-py export-users-of-iam.py
+py export-users.py
 ```
 
 #### Files that it exports
