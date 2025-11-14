@@ -15,12 +15,12 @@ This repository contains scripts and tools for automating data extraction and an
 - Route53: inventory of domains to scan later.
 
 #### Tools used
-- Robo3 (python), bash, aws cli.
+- Robo3 (python)
+- Bash
+- Aws cli
 
 #### What do you need for the scripts to work?
-You need to have aws-cli installed because the framework we use from Python needs access to our AWS account.
-- Aws account with permissions 🔐
-- Bash
+You need to have aws-cli installed because the framework we use from Python needs access to our AWS account (with permissions 🔐)
 
 #### Scripts, details and JSON structures 📝
 1. Export users list of Iam in AWS
