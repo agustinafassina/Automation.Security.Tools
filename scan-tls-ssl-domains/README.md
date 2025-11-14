@@ -1,13 +1,13 @@
 # Scan TLS and SSL in the domains
 List the AWS domains and analyze the TLS and SSL protocols
 
-#### Framework, library, package and other
+#### Framework, library, package and other📦
 Python with Boto3 and bash.
 
-#### Requirements to run the script
+#### Requirements to run the script📋
 Aws cli, boto3 installed and bash.
 
-#### Run script
+#### Run script🚀
 ```
 # get domains from aws
 py get-domains.py

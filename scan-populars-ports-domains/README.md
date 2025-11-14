@@ -1,13 +1,13 @@
 # Scan domains and open ports.
 Lists the AWS domains and scans them.
 
-#### Framework, library, package and other
+#### Framework, library, package and other📦
 Python with Boto3 and bash.
 
-#### Requirements to run the script
+#### Requirements to run the script📋
 Aws cli, boto3 installed and bash.
 
-#### Run script
+#### Run script🚀
 ```
 # get domains from aws
 py get-domains.py

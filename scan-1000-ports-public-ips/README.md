@@ -1,4 +1,4 @@
-# Scan 1000 open ports in the Public IPs
+# Scan 1000 open ports in the Public IPs 📤
 Scan the AWS public IPs, taking into account 1000 ports.
 
 #### The Port to scan
@@ -35,13 +35,13 @@ additional_ranges = [
 ]
 ```
 
-#### Framework, library, package and other
+#### Framework, library, package and other 📦
 Python with Boto3.
 
-#### Requirements to run the script
+#### Requirements to run the script📋
 Aws cli and boto3 installed.
 
-#### Run script
+#### Run script🚀
 ```
 # get public ips
 py get-public-ips.py

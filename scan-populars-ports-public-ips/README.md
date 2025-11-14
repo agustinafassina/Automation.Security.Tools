@@ -20,13 +20,13 @@ Scan AWS public IPs, taking into account the most popular ports.
 * 8080 (HTTP alternativo)
 * 8443 (HTTPS alternativo)
 
-#### Framework, library, package and other
+#### Framework, library, package and other📦
 Python and Boto3
 
-#### Requirements to run the script
+#### Requirements to run the script📋
 Aws cli, python and boto3 installed.
 
-#### Run script
+#### Run script🚀
 ```
 # get public ips
 py get-publics-ips.py
