@@ -27,15 +27,15 @@ You need to have aws-cli installed because the framework we use from Python need
     - Script folder: ./export-iam-users
     - Readme detail: ./export-iam-users/README.md
     - Export files:
-    - 1. Csv result: iam_users_result.csv
-    - 2. Json result: iam_users_result.json
+    - 1. Csv result: iam_users_results.csv
+    - 2. Json result: iam_users_results.json
 
 2. Scan public IPs and open ports (1000)
     - Script folder: ./scan-1000-ports-public-ips
     - Readme detail: ./scan-1000-ports-public-ips/README.md
     - Export files:
-    - 1. Csv result: scan_publicips_result.csv
-    - 2. Json result: scan_publicips_result.json
+    - 1. Csv result: scan_publicips_results.csv
+    - 2. Json result: scan_publicips_results.json
 
 3. Scan headers in the domains
     - Script folder: ./scan-headers-domains
@@ -48,8 +48,8 @@ You need to have aws-cli installed because the framework we use from Python need
     - Script folder: ./scan-populars-ports-public-ips
     - Readme detail: ./scan-populars-ports-public-ips/README.md
     - Export files:
-    - 1. Csv result: scan_publicips_result.csv
-    - 2. Json result: scan_publicips_result.json
+    - 1. Csv result: scan_publicips_results.csv
+    - 2. Json result: scan_publicips_results.json
 
 5. Scan for open ports in the domains
     - Script folder: ./scan-populars-ports-domains

@@ -46,14 +46,14 @@ for entry in data:
         'ScanTime': scan_time
     })
 
-with open('scan_publicips_result.json', 'w') as f:
+with open('scan_publicips_results.json', 'w') as f:
     json.dump(results, f, indent=4)
 
-csv_file = 'scan_publicips_result.csv'
+csv_file = 'scan_publicips_results.csv'
 with open(csv_file, 'w', newline='') as csvf:
     writer = csv.DictWriter(csvf, fieldnames=['PublicIp', 'PrivateIp', 'Region', 'Name', 'OpenPorts', 'ScanTime'])
     writer.writeheader()
     for row in results:
         writer.writerow(row)
 
-print(f"Complete scan. Results saved to 'scan_publicips_result.json' and '{csv_file}'")
+print(f"Complete scan. Results saved to 'scan_publicips_results.json' and '{csv_file}'")

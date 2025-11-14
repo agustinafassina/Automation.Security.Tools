@@ -66,10 +66,10 @@ users_data = get_iam_users()
 
 df = pd.DataFrame(users_data)
 
-csv_filename = 'iam_users_result.csv'
+csv_filename = 'iam_users_results.csv'
 df.to_csv(csv_filename, index=False)
 
-json_filename = 'iam_users_result.json'
+json_filename = 'iam_users_results.json'
 with open(json_filename, 'w') as json_file:
     json.dump(users_data, json_file, indent=4)
 

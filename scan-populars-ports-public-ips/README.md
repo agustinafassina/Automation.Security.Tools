@@ -36,16 +36,16 @@ py scan-public-ips.py
 ```
 
 #### Files that it exports
-1. Csv result: scan_publicips_result.csv
-2. Json result: scan_publicips_result.json
+1. Csv result: scan_publicips_results.csv
+2. Json result: scan_publicips_results.json
 
 #### Structure of the exported files
-1. Csv result: scan_publicips_result.csv
+1. Csv result: scan_publicips_results.csv
 ```
 PublicIp,PrivateIp,Region,Name,OpenPorts,ScanTime
 ```
 
-2. Json result: scan_publicips_result.json
+2. Json result: scan_publicips_results.json
 ```
 [
         "PublicIp": "xx.222.xxx.112",

@@ -13,16 +13,16 @@ py export-users.py
 ```
 
 #### Files that it exports
-1. Csv result: iam_users_result.csv
-2. Json result: iam_users_result.json
+1. Csv result: iam_users_results.csv
+2. Json result: iam_users_results.json
 
 #### Structure of the exported files
-1. Csv result: iam_users_result.csv
+1. Csv result: iam_users_results.csv
 ```
 UserName,Groups,UserPolicies,GroupPermissions,TagProject,TagProjectStatus,TagProjectService,TagProjectDescription
 ```
 
-2. Json result: iam_users_result.json
+2. Json result: iam_users_results.json
 ```
 [
     {
