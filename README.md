@@ -63,3 +63,4 @@ You need to have aws-cli installed because the framework we use from Python need
     - Readme detail: ./scan-tls-ssl-domains/README.md
     - Export files:
     - 1. Html files result: /scan-tls-ssl-domains/reports
+
