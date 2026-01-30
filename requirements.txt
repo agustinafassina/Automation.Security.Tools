@@ -1,0 +1,8 @@
+# Python dependencies for Automation.Security.Tools
+# Install with: pip install -r requirements.txt
+
+# AWS SDK
+boto3>=1.28.0,<2.0.0
+
+# Data manipulation
+pandas>=2.0.0,<3.0.0
