@@ -1,66 +1,124 @@
-# Security Tools for Automation⚙️
-This repository contains scripts and tools for automating data extraction and analysis from AWS. The main goal is to facilitate the collection of information from various AWS services and apply different security, quality, or compliance scanners to detect vulnerabilities, inconsistencies, or risks in the data.
+# Security Tools for Automation ⚙️
+Scripts and tools for automating data extraction and analysis from AWS. The main goal is to facilitate the collection of information from various AWS services and apply security, quality, or compliance scanners to detect vulnerabilities, inconsistencies, or risks.
 
-#### The repository has some implementations🚀
-1. [x] Export users list of Iam in AWS (export-iam-users)
-2. [x] Scan open 1000 ports in the public IPs (scan-1000-ports-public-ips)
-3. [x] Scan headers in the domains (apis or apps)
-4. [x] Scan popular open ports in the public ips (scan-populars-ports-public-ips)
-5. [x] Scan popular open ports in the domains (scan-populars-ports-domains)
-6. [x] Scan TLS/SSL (scan-tls-domains)
+### Implementations 🚀
+- [x] **Export users list of IAM in AWS** (`export-iam-users`)
+- [x] **Scan open 1000 ports in public IPs** (`scan-1000-ports-public-ips`)
+- [x] **Scan headers in domains** (APIs or apps) (`scan-headers-domains`)
+- [x] **Scan popular open ports in public IPs** (`scan-populars-ports-public-ips`)
+- [x] **Scan popular open ports in domains** (`scan-populars-ports-domains`)
+- [x] **Scan TLS/SSL in domains** (`scan-tls-ssl-domains`)
 
-#### Types of data fetched from AWS📄
-- IAM: Policies, users, roles, and permissions.
-- EC2 and Public IP: Instance inventory, open ports and more.
-- Route53: inventory of domains to scan later.
+### Data fetched from AWS 📄
+- **IAM:** policies, users, roles, and permissions.
+- **EC2 and Public IPs:** instance inventory, open ports, and more.
+- **Route53:** domain inventory for later scanning.
 
-#### Tools used🛠️
-- Robo3 (python)
-- Bash
-- Aws cli
+### Prerequisites 🦾
+- **AWS CLI** installed and configured (scripts need access to your AWS account with appropriate permissions 🔐).
+- **Python 3** (for Python scripts).
+- **Bash** (for shell scripts).
 
-#### What do you need for the scripts to work?🦾
-You need to have aws-cli installed because the framework we use from Python needs access to our AWS account (with permissions🔐).
+## Installation and Setup
+### 1. Clone the repository
+```bash
+git clone <repository-url>
+cd Automation.Security.Tools
+```
 
-#### Scripts, details and JSON structures📝
-1. Export users list of Iam in AWS
-    - Script folder: ./export-iam-users
-    - Readme detail: ./export-iam-users/README.md
-    - Export files:
-    - 1. Csv result: iam_users_results.csv
-    - 2. Json result: iam_users_results.json
+### 2. Virtual environment and dependencies (Python)
+```bash
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+# source .venv/bin/activate   # Linux/macOS
+pip install -r requirements.txt
+```
 
-2. Scan public IPs and open ports (1000)
-    - Script folder: ./scan-1000-ports-public-ips
-    - Readme detail: ./scan-1000-ports-public-ips/README.md
-    - Export files:
-    - 1. Csv result: scan_publicips_results.csv
-    - 2. Json result: scan_publicips_results.json
+### 3. Environment variables
+Copy `.env.example` to `.env` and adjust the values:
+```bash
+copy .env.example .env   # Windows
+# cp .env.example .env   # Linux/macOS
+```
 
-3. Scan headers in the domains
-    - Script folder: ./scan-headers-domains
-    - Readme detail: ./scan-headers-domains/README.md
-    - Export files:
-    - 1. Csv result: verified_headers_results.csv
-    - 2. Json result: verified_headers_results.json
+Main variables in `.env`:
+| Variable | Description |
+|----------|-------------|
+| `AWS_REGION` | AWS region (e.g., `us-east-1`) |
+| `AWS_PROFILE` | AWS CLI profile |
+| `OUTPUT_DIR` | Output directory (e.g., `./results`) |
+| `LOG_LEVEL` | Log level (`INFO`, `DEBUG`, etc.) |
 
-4. Scan popular open ports in the public ips
-    - Script folder: ./scan-populars-ports-public-ips
-    - Readme detail: ./scan-populars-ports-public-ips/README.md
-    - Export files:
-    - 1. Csv result: scan_publicips_results.csv
-    - 2. Json result: scan_publicips_results.json
+### Project Structure
+```
+Automation.Security.Tools/
+├── src/
+│   └── common/           # Shared code (AWS clients, config, utils)
+├── export-iam-users/
+├── scan-1000-ports-public-ips/
+├── scan-headers-domains/
+├── scan-populars-ports-public-ips/
+├── scan-populars-ports-domains/
+├── scan-tls-ssl-domains/
+├── tests/
+├── .env.example
+├── requirements.txt
+└── README.md
+```
 
-5. Scan for open ports in the domains
-    - Script folder: ./scan-populars-ports-domains
-    - Readme detail: ./scan-populars-ports-domains/README.md
-    - Export files:
-    - 1. Csv result: scan_port_domains_results.csv
-    - 2. Json result: scan_port_domains_results.json
+The `src/common` module provides:
+- AWS clients (EC2, IAM, Route53)
+- Configuration loaded from `.env`
+- File utilities (JSON, CSV) and logging
 
-6. Scan TLS and SSL in the domains
-    - Script folder: ./scan-tls-ssl-domains
-    - Readme detail: ./scan-tls-ssl-domains/README.md
-    - Export files:
-    - 1. Html files result: /scan-tls-ssl-domains/reports
+## Tools Used 🛠️
+- **Boto3** (Python) – AWS SDK
+- **Bash** – Scanning scripts
+- **AWS CLI** – Configuration and account access
 
+## Scripts, Details, and Output Structures 📝
+### 1. Export users list of IAM in AWS
+- **Folder:** `./export-iam-users`
+- **Details:** `./export-iam-users/README.md`
+- **Output files:**
+  - CSV: `iam_users_results.csv`
+  - JSON: `iam_users_results.json`
+
+### 2. Scan public IPs and open ports (1000)
+
+- **Folder:** `./scan-1000-ports-public-ips`
+- **Details:** `./scan-1000-ports-public-ips/README.md`
+- **Output files:**
+  - CSV: `scan_publicips_results.csv`
+  - JSON: `scan_publicips_results.json`
+
+### 3. Scan headers in domains
+
+- **Folder:** `./scan-headers-domains`
+- **Details:** `./scan-headers-domains/README.md`
+- **Output files:**
+  - CSV: `verified_headers_results.csv`
+  - JSON: `verified_headers_results.json`
+
+### 4. Scan popular open ports in public IPs
+
+- **Folder:** `./scan-populars-ports-public-ips`
+- **Details:** `./scan-populars-ports-public-ips/README.md`
+- **Output files:**
+  - CSV: `scan_publicips_results.csv`
+  - JSON: `scan_publicips_results.json`
+
+### 5. Scan open ports in domains
+
+- **Folder:** `./scan-populars-ports-domains`
+- **Details:** `./scan-populars-ports-domains/README.md`
+- **Output files:**
+  - CSV: `scan_port_domains_results.csv`
+  - JSON: `scan_port_domains_results.json`
+
+### 6. Scan TLS/SSL in domains
+
+- **Folder:** `./scan-tls-ssl-domains`
+- **Details:** `./scan-tls-ssl-domains/README.md`
+- **Output files:**
+  - HTML: `./scan-tls-ssl-domains/reports`
