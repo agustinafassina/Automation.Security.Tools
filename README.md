@@ -49,7 +49,7 @@ Main variables in `.env`:
 | `OUTPUT_DIR` | Output directory (e.g., `./results`) |
 | `LOG_LEVEL` | Log level (`INFO`, `DEBUG`, etc.) |
 
-### Project Structure
+### Project Structure 📂
 ```
 Automation.Security.Tools/
 ├── src/
