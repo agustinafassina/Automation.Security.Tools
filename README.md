@@ -85,7 +85,6 @@ The `src/common` module provides:
   - JSON: `iam_users_results.json`
 
 ### 2. Scan public IPs and open ports (1000)
-
 - **Folder:** `./scan-1000-ports-public-ips`
 - **Details:** `./scan-1000-ports-public-ips/README.md`
 - **Output files:**
@@ -93,7 +92,6 @@ The `src/common` module provides:
   - JSON: `scan_publicips_results.json`
 
 ### 3. Scan headers in domains
-
 - **Folder:** `./scan-headers-domains`
 - **Details:** `./scan-headers-domains/README.md`
 - **Output files:**
@@ -101,7 +99,6 @@ The `src/common` module provides:
   - JSON: `verified_headers_results.json`
 
 ### 4. Scan popular open ports in public IPs
-
 - **Folder:** `./scan-populars-ports-public-ips`
 - **Details:** `./scan-populars-ports-public-ips/README.md`
 - **Output files:**
@@ -109,7 +106,6 @@ The `src/common` module provides:
   - JSON: `scan_publicips_results.json`
 
 ### 5. Scan open ports in domains
-
 - **Folder:** `./scan-populars-ports-domains`
 - **Details:** `./scan-populars-ports-domains/README.md`
 - **Output files:**
@@ -117,7 +113,6 @@ The `src/common` module provides:
   - JSON: `scan_port_domains_results.json`
 
 ### 6. Scan TLS/SSL in domains
-
 - **Folder:** `./scan-tls-ssl-domains`
 - **Details:** `./scan-tls-ssl-domains/README.md`
 - **Output files:**
