@@ -35,3 +35,8 @@
 /scan-populars-ports-domains/domains.txt
 
 /scan-tls-ssl-domains/records.json
+
+/audit-open-security-groups/open_security_groups_results.csv
+/audit-open-security-groups/open_security_groups_results.json
+
+.vscode/

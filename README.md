@@ -8,6 +8,7 @@ Scripts and tools for automating data extraction and analysis from AWS. The main
 - [x] **Scan popular open ports in public IPs** (`scan-populars-ports-public-ips`)
 - [x] **Scan popular open ports in domains** (`scan-populars-ports-domains`)
 - [x] **Scan TLS/SSL in domains** (`scan-tls-ssl-domains`)
+- [x] **Audit security groups open to the internet** (`audit-open-security-groups`)
 
 ### Data fetched from AWS 📄
 - **IAM:** policies, users, roles, and permissions.
@@ -60,6 +61,7 @@ Automation.Security.Tools/
 ├── scan-populars-ports-public-ips/
 ├── scan-populars-ports-domains/
 ├── scan-tls-ssl-domains/
+├── audit-open-security-groups/
 ├── tests/
 ├── .env.example
 ├── requirements.txt
@@ -117,3 +119,10 @@ The `src/common` module provides:
 - **Details:** `./scan-tls-ssl-domains/README.md`
 - **Output files:**
   - HTML: `./scan-tls-ssl-domains/reports`
+
+### 7. Audit security groups open to the internet
+- **Folder:** `./audit-open-security-groups`
+- **Details:** `./audit-open-security-groups/README.md`
+- **Output files:**
+  - CSV: `open_security_groups_results.csv`
+  - JSON: `open_security_groups_results.json`
