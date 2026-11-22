@@ -4,7 +4,7 @@ Scripts that pull inventory from an AWS account and check it for open ports, mis
 ## Requirements 📋
 - Python 3
 - AWS CLI configured for the account you want to scan (the scripts use that credential chain)
-- Bash, for the shell scripts. On Windows, use Git Bash or WSL. Several of those scripts install packages with `apt`
+- Bash, for the shell scripts. On Windows, use Git Bash or WSL. The scripts check for the tools they need and stop if one is missing; they don't install anything
 - Extra tools used by some scans: `jq`, `curl`, `dig`, `nmap`, `nikto`, and [testssl.sh](https://github.com/drwetter/testssl.sh)
 
 ## Setup
@@ -69,15 +69,15 @@ bash scan-ports-domains.sh
 Writes `records.json`, then `scan_port_domains_results.csv` and `scan_port_domains_results.json`. More detail is in `scan-populars-ports-domains/README.md`.
 
 ### scan-headers-domains
-Route 53 A records, then checks `X-Content-Type-Options`, `X-Frame-Options`, `Content-Security-Policy`, and `Strict-Transport-Security`. Needs `jq`, `curl`, and `dig`.
+Route 53 A records, then checks `X-Content-Type-Options`, `X-Frame-Options` (`DENY` or `SAMEORIGIN`), `Content-Security-Policy`, and `Strict-Transport-Security` on the final response after redirects, trying HTTPS first. Needs `jq`, `curl`, and `dig`.
 ```bash
 python get-domains.py
 bash scan-header-multiple-domain.sh
 ```
-Writes `records.json`, then `verified_headers_results.csv` and `verified_headers_results.json`. More detail is in `scan-headers-domains/README.md`.
+Writes `records.json`, then `verified_headers_results.csv` and `verified_headers_results.json`. To check a single domain, run `bash scan-header-one-domain.sh example.com`. More detail is in `scan-headers-domains/README.md`.
 
 ### scan-tls-ssl-domains
-Route 53 A records, then `nikto` and `testssl.sh` per domain. Needs `jq`, `nikto`, and a `testssl.sh` checkout. The script runs `./testssl.sh/testssl.sh/testssl.sh`.
+Route 53 A records, then `nikto` and `testssl.sh` per domain. Needs `jq`, `nikto`, and a `testssl.sh` checkout. By default the script runs `./testssl.sh/testssl.sh`, which is what `git clone --depth 1 https://github.com/drwetter/testssl.sh.git` creates in that folder. Set `TESTSSL=/path/to/testssl.sh` to use another copy.
 ```bash
 python get-domains.py
 bash scan-tls-ssl-domains.sh

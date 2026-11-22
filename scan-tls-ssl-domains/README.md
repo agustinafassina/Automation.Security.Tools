@@ -5,7 +5,11 @@ List the AWS domains and analyze the TLS and SSL protocols
 Python with Boto3 and bash.
 
 #### Requirements to run the script📋
-Aws cli, boto3 installed and bash.
+Aws cli, boto3 installed, bash, `jq`, `nikto`, and a checkout of [testssl.sh](https://github.com/drwetter/testssl.sh):
+```
+git clone --depth 1 https://github.com/drwetter/testssl.sh.git
+```
+To use a copy somewhere else, set `TESTSSL=/path/to/testssl.sh`.
 
 #### Run script🚀
 ```
@@ -17,5 +21,6 @@ bash scan-tls-ssl-domains.sh
 ```
 
 #### Files that it exports: in /reports
-Result: The result is exported in an html by domain
-1. DOMAIN.html
+One Nikto report and one testssl.sh report per domain:
+1. DOMAIN_nikto.html
+2. DOMAIN_testssl.json

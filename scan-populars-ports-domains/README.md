@@ -31,7 +31,7 @@ Domain,OpenPorts,ScanTime
 [
     {
         "Domain": "api.domain.ar.",
-        "OpenPorts": "53/tcp,443/tcp",
+        "OpenPorts": "53,443",
         "ScanTime": "2025-01-01 19:00:00"
     }
 ]

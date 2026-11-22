@@ -10,32 +10,49 @@ regions = [
     'eu-north-1', 'sa-east-1'
 ]
 
-all_ips = []
 
-for region in regions:
-    try:
-        ec2 = boto3.client('ec2', region_name=region)
-        response = ec2.describe_instances()
-        for reservation in response['Reservations']:
-            for instance in reservation['Instances']:
-                if instance['State']['Name'] == 'running':
-                    public_ip = instance.get('PublicIpAddress')
-                    private_ip = instance.get('PrivateIpAddress')
+def instance_name(instance):
+    for tag in instance.get('Tags', []):
+        if tag['Key'] == 'Name':
+            return tag['Value']
+    return None
 
-                    name = None
-                    if 'Tags' in instance:
-                        for tag in instance['Tags']:
-                            if tag['Key'] == 'Name':
-                                name = tag['Value']
-                                break
-                    all_ips.append({
-                        'Region': region,
-                        'Name': name,
-                        'PublicIp': public_ip,
-                        'PrivateIp': private_ip
-                    })
-    except Exception as e:
-        print(f"Error in the region {region}: {e}")
 
-with open('record_public_ip.json', 'w') as f:
-    json.dump(all_ips, f, indent=4)
+def main():
+    all_ips = []
+    skipped = 0
+
+    for region in regions:
+        try:
+            ec2 = boto3.client('ec2', region_name=region)
+            paginator = ec2.get_paginator('describe_instances')
+            pages = paginator.paginate(
+                Filters=[{'Name': 'instance-state-name', 'Values': ['running']}]
+            )
+            for page in pages:
+                for reservation in page['Reservations']:
+                    for instance in reservation['Instances']:
+                        public_ip = instance.get('PublicIpAddress')
+                        if not public_ip:
+                            skipped += 1
+                            continue
+                        all_ips.append({
+                            'Region': region,
+                            'Name': instance_name(instance),
+                            'PublicIp': public_ip,
+                            'PrivateIp': instance.get('PrivateIpAddress')
+                        })
+        except Exception as e:
+            print(f"Error in the region {region}: {e}")
+
+    with open('record_public_ip.json', 'w') as f:
+        json.dump(all_ips, f, indent=4)
+
+    print(
+        f"{len(all_ips)} running instances with a public IP saved to 'record_public_ip.json' "
+        f"({skipped} without a public IP skipped)"
+    )
+
+
+if __name__ == '__main__':
+    main()

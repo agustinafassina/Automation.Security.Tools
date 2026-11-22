@@ -43,11 +43,9 @@ ports_to_scan = set(specific_ports + additional_ports)
 ports_to_scan = sorted(ports_to_scan)
 
 def check_port(ip, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(0.5)
-    result = sock.connect_ex((ip, port))
-    sock.close()
-    return port, result == 0
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.5)
+        return port, sock.connect_ex((ip, port)) == 0
 
 def scan_ip(ip):
     open_ports = []
@@ -57,7 +55,7 @@ def scan_ip(ip):
             port, is_open = future.result()
             if is_open:
                 open_ports.append(port)
-    return open_ports
+    return sorted(open_ports)
 
 with open('record_public_ip.json', 'r') as f:
     data = json.load(f)
@@ -65,7 +63,9 @@ with open('record_public_ip.json', 'r') as f:
 results = []
 
 for entry in data:
-    ip_public = entry['PublicIp']
+    ip_public = entry.get('PublicIp')
+    if not ip_public:
+        continue
     name = entry.get('Name', '')
     private_ip = entry.get('PrivateIp', 'N/A')
     region = entry.get('Region', 'N/A')

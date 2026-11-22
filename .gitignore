@@ -1,42 +1,29 @@
-/scan-port-domains/domains.txt
-/scan-port-domains/records.json
-/scan-port-domains/scan_results.csv
-/scan-port-domains/a_records.json
+# Scan inputs and results. They hold account inventory and findings, never commit them.
+records.json
+record_public_ip.json
+domains.txt
+*_results.csv
+*_results.json
+*_result.csv
+*_result.json
+reports/
+tls_results/
+result.json
 
-/scan-ports-public-ips/record_public_ip.json
-/scan-ports-public-ips/scan_publicips_result.json
+# testssl.sh checkouts
+testssl.sh/
 
-/tests/testssl.sh/
-/tests/result.json
+# Environment and secrets
+.env
+.venv/
+venv/
 
-/scan-tls-domains/testssl.sh/
-/scan-tls-domains/tls_results/
-/scan-tls-domains/records.json
+# Python
+__pycache__/
+*.pyc
 
-## new folders version
-/export-iam-users/iam_users_result.csv
-/export-iam-users/iam_users_result.json
-
-/scan-1000-ports-public-ips/scan_publicips_result.csv
-/scan-1000-ports-public-ips/scan_publicips_result.json
-/scan-1000-ports-public-ips/record_public_ip.json
-
-/scan-headers-domains/verified_headers_results.csv
-/scan-headers-domains/verified_headers_results.json
-/scan-headers-domains/records.json
-
-/scan-populars-ports-public-ips/scan_publicips_result.csv
-/scan-populars-ports-public-ips/scan_publicips_result.json
-/scan-populars-ports-public-ips/record_public_ip.json
-
-/scan-populars-ports-domains/scan_port_domains_results.csv
-/scan-populars-ports-domains/scan_port_domains_results.json
-/scan-populars-ports-domains/records.json
-/scan-populars-ports-domains/domains.txt
-
-/scan-tls-ssl-domains/records.json
-
-/audit-open-security-groups/open_security_groups_results.csv
-/audit-open-security-groups/open_security_groups_results.json
+# Logs
+logs/
+*.log
 
 .vscode/
