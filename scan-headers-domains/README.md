@@ -14,7 +14,12 @@ py get-domains.py
 
 # scan domain headers (multiple domains)
 bash scan-header-multiple-domain.sh
+
+# scan the headers of one domain
+bash scan-header-one-domain.sh example.com
 ```
+
+Headers are read from the final response after following redirects. HTTPS is tried first, then HTTP.
 
 #### Files that it exports
 1. Csv result: verified_headers_results.csv
@@ -23,7 +28,7 @@ bash scan-header-multiple-domain.sh
 #### Structure of the exported files
 1. Csv result: verified_headers_results.csv
 ```
-Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,Hsts
+Domain,Ip,FinalStatus,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,Hsts
 ```
 
 2. Json result: verified_headers_results.json
@@ -32,9 +37,10 @@ Domain,Ip,X-Content-Type-Options,X-Frame-Options,Content-Security-Policy,Hsts
     {
         "Domain": "",
         "Ip": "",
+        "FinalStatus": "HTTP/2 200",
         "xContentTypeOptions": "no⛔",
         "xFrameOptions": "no⛔",
-        "contentSecurityPolicy": "no⛔",
+        "ContentSecurityPolicy": "no⛔",
         "Hsts": "no⛔"
     }
 ]

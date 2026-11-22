@@ -7,11 +7,9 @@ import csv
 ports_to_scan = [ 21, 22, 25, 53, 80, 110, 143, 443, 993, 995, 3389, 3306, 5432, 5900, 8080, 8443 ]
 
 def check_port(ip, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(0.5)
-    result = sock.connect_ex((ip, port))
-    sock.close()
-    return port, result == 0
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.5)
+        return port, sock.connect_ex((ip, port)) == 0
 
 def scan_ip(ip):
     open_ports = []
@@ -21,7 +19,7 @@ def scan_ip(ip):
             port, is_open = future.result()
             if is_open:
                 open_ports.append(port)
-    return open_ports
+    return sorted(open_ports)
 
 with open('record_public_ip.json', 'r') as f:
     data = json.load(f)
@@ -29,7 +27,9 @@ with open('record_public_ip.json', 'r') as f:
 results = []
 
 for entry in data:
-    public_ip = entry['PublicIp']
+    public_ip = entry.get('PublicIp')
+    if not public_ip:
+        continue
     name = entry.get('Name', '')
     private_ip = entry.get('PrivateIp', 'N/A')
     region = entry.get('Region', 'N/A')
